@@ -1,5 +1,8 @@
 #! /usr/bin/python
 
+from time import *
+
+t1 = clock()
 
 optimus = [2]
 
@@ -18,6 +21,7 @@ while j < 10001 :
 		optimus.append(i)
 		j += 1
 	i += 1
+t2 = clock()
 
-print j, optimus[-1]
+print optimus[-1], 'is the 10001st prime\nExecute in', t2-t1, 'seconds'
 
