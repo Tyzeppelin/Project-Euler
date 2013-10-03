@@ -12,6 +12,7 @@ a = []
 
 i = 1
 
+# transform THAT_NUMBER in an int_array (not the best way)
 while i <= 1000 :
 	a.append(int(THAT_NUMBER%10))
 	THAT_NUMBER = THAT_NUMBER/10
@@ -19,11 +20,12 @@ while i <= 1000 :
 
 a.reverse()
 
-print a
+# print a
 
 maxi = 0
 
 i = 0
+# test every combination
 while i < 995 :
 	maxi = max(maxi, a[i]*a[i+1]*a[i+2]*a[i+3]*a[i+4])
 	i += 1
