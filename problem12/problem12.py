@@ -1,6 +1,7 @@
 #!/usr/bin/python
 
 from math import *
+from time import *
 
 def triang (n) :
 	return n*(n+1)/2
@@ -24,11 +25,12 @@ def divisors (n) :
 
 if __name__ == "__main__" :
 
-	#for i in range(100) :
+	t1 = clock()
 	
 	i = 2
 	a = []
 	while len(divisors(triang(i))) <= 500 :
 		i += 1
-	print triang(i)
+	t2 = clock()
+	print triang(i), "\nExecute in", t2-t1, "seconds"
 
