@@ -17,6 +17,8 @@ def genere (n) :
 	return primeArray
 
 
+# return True if n is divisible by any elements
+# in tab
 def div (n, tab) :
 	i = 0
 	while i < sqrt(len(tab)) :
@@ -26,7 +28,7 @@ def div (n, tab) :
 	return True
 
 
-
+# generate the sum of the prime minor than n
 def sumOfPrime (n) :
 	
 	sum = 0
