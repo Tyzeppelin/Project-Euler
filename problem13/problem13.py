@@ -1,6 +1,8 @@
 # /usr/bin/python
 
 
+# transform a file into an array of the first 
+# n digits of each line
 def nToList (PATH, n) :
 	
 	data_f = open(PATH, 'r')
@@ -13,7 +15,8 @@ def nToList (PATH, n) :
 
 	return result
 
-
+# sum the first n digits of each lines of a file
+# named PATH
 def sumNNumber (PATH , n) :
 	
 	result = 0
