@@ -33,6 +33,10 @@ def sumNNumber (PATH , n) :
 if __name__ == "__main__" :
 
 	PATH = "problem13_data"
+	# I chose to take the first 10 numbers of
+	# each lines to make sure that i take the first
+	# 10 numbers of the sum of each lines
 	n =  10
 	poza = sumNNumber(PATH, 10)
 	print poza
+
