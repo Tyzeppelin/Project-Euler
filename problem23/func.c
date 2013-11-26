@@ -5,44 +5,6 @@
 
 #include "func.h"
 
-int initPrime(int n) {
-
-    int num =1;
-    int i = 1;
-    int* prime = (int*)malloc(n);
-
-    if (prime == NULL) return -1;
-
-    prime[0] = 2;
-
-    for (i = 3; i < n; i++) {
-        int j;
-        int b = 1;
-        for (j = 0; j < num; j++) {
-            if (i % prime[j] == 0) {
-                b = 0;
-                break;
-            }
-        }
-        if(b) {
-            prime[num++] = i;
-        }
-    }
-
-    realloc(prime, num);
-    printf("%d,%d,%d,%d", prime[0], prime[1], prime[3], prime[num-1]);
-
-    FILE* mem = NULL;
-
-    mem = fopen("prime.array", "wb");
-
-    for(i=0; i<num; i++)
-        fprintf(mem, "%d ", prime[i]);
-
-    free(prime);
-
-    return num;
-}
 
 int isAbundant(int n) {
 
@@ -80,7 +42,6 @@ int *abArr (int n) {
     for (i = 1; i < n; i++) {
         if (isAbundant(i)){
                 ab[num++] = i;
-                //sprintf("%d. %d\n", num, i);
         }
     }
 
@@ -129,14 +90,12 @@ int *zgrublu(int* ab, int n) {
     i = 0;
     for (j = 0; j < n; j++) {
         if (entier[j] != -1 && i < countAd) {
-            printf("%d\t", entier[j]);
+            //printf("%d\t", entier[j]);
             res[i] = entier[j];
             i++;
             }
     }
-    printf("\n old : %d", res[countAd]);
     res[countAd] = 0;
-    printf(" new : %d\n", res[countAd]);
 
     return res;
 }

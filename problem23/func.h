@@ -2,9 +2,6 @@
 #define FUNC_H_INCLUDED
 
 #include <stdio.h>
-//#define MAX_ARR 160
-
-int initPrime(int n);
 
 int isAbundant(int n);
 
