@@ -1,0 +1,15 @@
+# depslib dependency file v1.0
+1386090943 source:d:\project c\porject euler\problem24\main.c
+	<stdio.h>
+	<stdlib.h>
+	"func.h"
+
+1385491145 d:\project c\porject euler\problem24\func.h
+	<stdio.h>
+
+1386091149 source:d:\project c\porject euler\problem24\func.c
+	<stdio.h>
+	<stdlib.h>
+	<math.h>
+	"func.h"
+
