@@ -15,46 +15,50 @@
 
 //Marche pas
 
-int interleave(int n, int nbElem) {
+int interleave(int N, int nbElem) {
 
-    int f = fact(nbElem-1);
-    int res = 0;
+    int i = 0, j = 0;
 
-    while (res*f < n) {
-        ++res;
+    while (i - N <= 0) {
+        i = (++j)*fact(nbElem);
+        //printf("\ni : %d, N : %d, j : %d", i, N, j);
     }
-    for (res = 0; res*f < n; res++);
-    return res-1;
+
+    return j;
 }
 
-int* position(int* elem, int nToReach, int nElem) {
+int position(int nToReach, int nElem) {
 
     int i = 0;
-    int n = nToReach;
+    int rest = 0;
+    int att = nToReach;
+    int result = 0;
 
-    int *res = (int*)malloc(nElem*sizeof(int));
-    if (res == NULL) exit(0);
 
-    for (i = 1; i < nElem; i++) {
+    for(i = nElem-1; i >= 1; i--) {
 
-        printf("\nnAAtteindre : %d, rank : %d, res[i-1] : %d", n, nElem-1, res[i-1]);
+        int a = interleave(att, i);
+        result = result*10+a;
+        rest = a * fact(i)-att;
+        att = fact(i)-rest;
+        printf("\nres : %d", result);
+    }
 
-        res[i] = elem[interleave(n, nElem)];
-        printf("\n trouvé : %d*%d!", res[i], nElem);
-        n = n - res[i]*fact(nElem-1);
-        nElem--;
+    return result;
+}
+
+int traduction(int *arr, int len, int seq) {
+
+    int i = 0, res = 0, pl = 0;
+
+    for (i = 0; i < len; i++){
+        pl = (int)seq/pow(10, len-i)
+        res += res*10 + pop(arr, len, pl);
     }
 
     return res;
 }
+int pop (int *arr, int len, int i) {
 
-int traduction(int* arr, int len) {
-
-    int i = 0, res = 0;
-
-    for (i = 0; i < len; i++){
-        res += (arr[i]*(pow(10, len-i-1)));
-    }
-
-    return res;
+    return 0;
 }

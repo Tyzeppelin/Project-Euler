@@ -13,3 +13,17 @@
 	<math.h>
 	"func.h"
 
+1386433834 source:c:\users\francois\documents\github\project-euler\problem24\main.c
+	<stdio.h>
+	<stdlib.h>
+	"func.h"
+
+1386433653 c:\users\francois\documents\github\project-euler\problem24\func.h
+	<stdio.h>
+
+1386433683 source:c:\users\francois\documents\github\project-euler\problem24\func.c
+	<stdio.h>
+	<stdlib.h>
+	<math.h>
+	"func.h"
+

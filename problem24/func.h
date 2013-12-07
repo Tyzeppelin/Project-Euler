@@ -7,15 +7,11 @@ int fact (int n);
 
 int interleave(int n, int nb);
 
-int *position(int* elem, int nToReach, int nElem);
+int position(int nToReach, int nElem);
 
-int traduction(int* arr, int len);
+int traduction(int* arr, int len, int seq);
 
-
-
-struct {
-
-};
+int pop (int *arr, int len, int i);
 
 
 #endif // FUNC_H_INCLUDED
