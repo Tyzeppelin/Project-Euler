@@ -13,15 +13,13 @@
     return sum;
 }
 
-//Marche pas
-
 int interleave(int N, int nbElem) {
 
     int i = 0, j = 0;
 
-    while (i - N <= 0) {
+    while (i - N < 0) {
         i = (++j)*fact(nbElem);
-        //printf("\ni : %d, N : %d, j : %d", i, N, j);
+        // printf("\n\ti : %d, N : %d, j : %d", i, N, j);
     }
 
     return j;
@@ -41,24 +39,42 @@ int position(int nToReach, int nElem) {
         result = result*10+a;
         rest = a * fact(i)-att;
         att = fact(i)-rest;
-        printf("\nres : %d", result);
+        // printf("\na --> %d, result--> %d, rest --> %d, att --> %d.\n", a, result, rest, att);
     }
 
-    return result;
+    return 10*result+1;
 }
 
 int traduction(int *arr, int len, int seq) {
 
     int i = 0, res = 0, pl = 0;
+    int mod = len-1;
 
-    for (i = 0; i < len; i++){
-        pl = (int)seq/pow(10, len-i)
-        res += res*10 + pop(arr, len, pl);
+    for (i = 0; i < len-1; i++){
+        pl = (int)seq/pow(10, mod);
+
+        int k = pop(arr, len, pl);
+        res = res*10 + k;
+
+        seq = seq % (int)pow(10, mod);
+        mod--;
+        //printf("\npl --> %d, mod --> %d, k--> %d, res --> %d, seq --> %d.", pl, mod, k, res, seq);
+    }
+
+    return 10*res + arr[0];
+}
+
+/*
+ * Care : i is the nth int,not mean the position in arr
+*/
+int pop (int *arr, int len, int i) {
+
+    int j, k = 0, res = arr[i-1];
+    for (j = 0; j < len-1; j++) {
+        if (j == i-1) {k++;}
+        arr[j] = arr[k];
+        k++;
     }
 
     return res;
-}
-int pop (int *arr, int len, int i) {
-
-    return 0;
 }

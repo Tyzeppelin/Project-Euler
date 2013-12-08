@@ -7,32 +7,22 @@ int main()
 {
 
 
-    int a = 10;
-    int b = 1000000;
-
-    int nb[3] = {0, 1, 2, 3};
-
-   printf("Exemple pour [0, 1, 2, 3]\n");
-
-    int n = interleave(13, 3);
-    printf("du coup : %d", n);
+    int len = 10;
+    int reach = 1000000;
+    int nb[10] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
 
 
-    printf("4 elements, 13e pos --> %d", position(13, 4));
+    printf("Resolution pour [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\n");
+    printf("\n On cherche le 1000000!\n\n");
 
+    int vit = position(reach, len-1);
 
-    //int elem[3] = {0, 1, 2};
+    printf("\n Position dans le tableau d'int --> %d", vit);
 
-    //int *real = position(elem, 3, 3);
+    int ban = traduction(nb, 10, vit);
 
-    //int trad = traduction(real, 3);
+    printf("\ntrad de %d dans un e arr de 10 elem --> %d", vit, ban);
 
-    /*int trad[] = {2, 0, 1 ,3};
-
-    printf("\ntadam -> %d", traduction(trad, 4));
-
-
-    //free(real);*/
 
     return 0;
 }
