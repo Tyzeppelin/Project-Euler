@@ -3,13 +3,14 @@
 
 import time
 
+
 def countSubStr(s, patt):
     return s.count(patt)
 
 
-# Find the largest reccuring cycle in a number n
+# Find the largest recurring cycle in a number n
 # return -1 if none found
-def reccuringCycle(n):
+def recurringCycle(n):
     i = 0
     s = str(n)
     sz = len(s)
@@ -38,12 +39,12 @@ if __name__ == "__main__":
     while den < 1000:
 
         n = num / den
-        rec = reccuringCycle(n)
+        rec = recurringCycle(n)
         if rec > max:
             print "den ->", den, "max cycle ->", rec
             max = den
             cycle = rec
         den += 1
 
-    print "maximum reccuring cycle -> max", max, " ; cycle", cycle
+    print "maximum recurring cycle -> max", max, " ; cycle", cycle
     print "Execute in", time.clock()-t1, "seconds"
