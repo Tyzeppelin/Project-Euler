@@ -1,6 +1,7 @@
 
 import time
 
+# Because there was many primes a long ago, and Optimus is the last of them.
 OPTIMUS = [2]
 
 
@@ -35,6 +36,7 @@ def autobots(a, b):
     while isprime(i**2 + a*i + b):
         i+=1
     return i-1
+
 
 def autobotsinrange(amin, amax, bmin, bmax):
     i = amin
