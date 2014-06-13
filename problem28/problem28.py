@@ -17,9 +17,6 @@ import time
 # dn = (2*n + 1)^2 - 6*n
 #
 
-
-
-
 def an(n):
     res = []
     i = 1
