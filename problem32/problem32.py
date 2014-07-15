@@ -54,8 +54,8 @@ class pandigital:
 
     def add (self):
  #       print self.get_sum(), ALLDAPOWA.keys() ,self.get_sum() not in ALLDAPOWA
-        if self.get_sum() not in ALLDAPOWA:
-            ALLDAPOWA[self.get_sum()] = self
+        if self.get_res() not in ALLDAPOWA:
+            ALLDAPOWA[self.get_res()] = self
             #print ALLDAPOWA
             return True
         else :
@@ -78,9 +78,9 @@ def next(pandig):
         res.set_op1(a+1)
         a+=1
         while not res.isPandigital():
-            if log10(a) > 3 :
-                if log10(a)+log10(b) > 5:
-                    print "No more."
+            if log10(a)+log(b) > 7 :
+                if log10(b) > 3:
+#                   print "No more."
                     return -1
                 else:
                     b += 1
@@ -112,7 +112,7 @@ if __name__ == "__main__":
         next_pan = next(next_pan)
         #print next_pan.get_op1(), "*", next_pan.get_op2(), "=", next_pan.get_res()
 
-#print ALLDAPOWA
+#print ALLDAPOWA, len(ALLDAPOWA)
 
 print sumOfAll()
 
