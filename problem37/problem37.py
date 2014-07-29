@@ -35,7 +35,7 @@ def isPrime (n):
 
 # To make OPTIMUS greater
 def MatrixOfLeadership (n):
-    i = 2
+    i = OPTIMUS[-1]
     while i < sqrt(n):
         isP = True
         for prime in OPTIMUS:
@@ -55,12 +55,13 @@ if __name__ == "__main__" :
 
     ct = 0
     tab = []
-
-    for num in range(1000000)[9:]:
+    num = 11
+    while ct < 11:
         if (isPrime(num)):
             if testLeft(num) and testRight(num):
                 ct += 1
                 tab.append(num)
+        num += 1
 
     print ct, tab, sum(tab)
     print "Prime generation + computation under", time.clock()-time1, "seconds"
