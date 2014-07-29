@@ -55,15 +55,12 @@ if __name__ == "__main__" :
 
     ct = 0
     tab = []
-    n = 11
 
-    while ct < 11 :
-        if isPrime(n):
-            if testLeft(n) and testRight(n):
+    for num in range(1000000)[9:]:
+        if (isPrime(num)):
+            if testLeft(num) and testRight(num):
                 ct += 1
-                tab.append(n)
-        n += 1
-
+                tab.append(num)
 
     print ct, tab, sum(tab)
     print "Prime generation + computation under", time.clock()-time1, "seconds"
