@@ -11,6 +11,7 @@ def nextCurrency(c):
     else :
         return currency[curr_ptr-1]
 
+
 # A modifier pour prendre en compte les valeurs de `currency`
 def part(n, k):
     if n == 0 and k == 0:
@@ -26,8 +27,6 @@ def part(n, k):
         #print "P(",n ,",",k,")","&&","P(", n-k, ",", k, ") &&", "P(", n, ",",nextCurrency(k),")"
         return part(n-k, k) + part(n, nextCurrency(k))
 
-
-
 if __name__ == "__main__":
     t1 = time.clock()
 
@@ -38,6 +37,6 @@ if __name__ == "__main__":
 #    print insert(a, 4)
 
     #print part(6, currency[-1])
-    a =  part(200, currency[-1])
+    a = part(200, currency[-1])
     print a
     print "Completed in", time.clock()-t1, "seconds"
