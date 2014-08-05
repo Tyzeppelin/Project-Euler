@@ -53,7 +53,7 @@ if __name__ == "__main__":
     t1 = time.clock()
 
     MatrixOfLeadership(987654321)
-    print OPTIMUS
+   # print OPTIMUS
 
     bumblebee = OPTIMUS[0]
     sentinel = 0
@@ -68,7 +68,7 @@ if __name__ == "__main__":
     while not done:
         if isPandigital(i):
             if isPrime(i):
-                print i
+                # print i
                 sentinel = i
                 done = True
         i -= 2
