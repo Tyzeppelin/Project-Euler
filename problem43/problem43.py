@@ -50,7 +50,7 @@ def get_d3(d4, d5):
             i = -1
             k = 0
         k += i
-#        print d3, d4, d5, k, i
+        print "d3", d3, d4, d5, k, i
     return int(d3)
 
 def get_d4():
@@ -62,7 +62,7 @@ def get_d5(d6, d7):
     k = 0
     while d5%1 != 0.0 or d5 < 0:
         d5 = (2*d7-d6+7*k)/10.0
-#        print d5, d6, d7, k, i
+        print "d5", d5, d6, d7, k, i
         k += i
     return int(d5)
 
@@ -77,7 +77,7 @@ def get_d8(d6, d7):
     k = 0
     while d8%1 != 0.0 or d8 < 0:
         d8 = d7-d6+11.0*k
- #       print d8, d6, d7, k, i
+        print "d8", d8, d6, d7, k, i
         k += i
     return int(d8)
 
@@ -87,6 +87,7 @@ def get_d9(d7, d8):
     k = 0
     while d9%1 != 0.0 or d9 < 0:
         d9 = (13*k-10*d7-d8)/4.0
+        print "d9", d9, d7, d8, k, i
         k += i
     return int(d9)
 
@@ -96,9 +97,11 @@ def get_d10(d8, d9):
     if (10*d8+d9) < 17:
         i = 1
     k = 0
-    while d10%1 != 0.0 or d10 < 0:
+    while d10%1 != 0.0 or d10 < 0 or d10 > 10:
         d10 = (-17*k+10*d8+d9)/5.0
-#        print d10, d8, d9, k, i
+        print "d10", d10, d8, d9, k, i
+        if d10 > 10:
+            i = -1
         k += i
     return int(d10)
 
@@ -124,7 +127,7 @@ if __name__ == "__main__":
     arr_d6 = [0, 5]
 
 
-    for d7 in range(10):
+    for d7 in range(3):
         for d4 in arr_d4:
             for d6 in arr_d6:
                 d5 = get_d5(d6, d7)
@@ -136,11 +139,15 @@ if __name__ == "__main__":
                 try :
                     r = getRemains(num)
                     num = r+num
+                    print num
                     if isPandigital(num):
+                        print "pandig", num
                         arr.append(toInt(num))
                     r.reverse()
                     num = r+num
+                    print num
                     if (isPandigital(num)):
+                        print "pandig", num
                         arr.append(toInt(num))
                 except IndexError:
                     print "not a pandig", num

@@ -26,12 +26,12 @@ if __name__ == "__main__" :
     t1 = time.clock()
 
     f = open("words.txt", "r")
-    l = [e[1:-1] for e in f.readlines()[0].split(",")]
+    l = [e[1:-1] for e in f.read().split(",")]
 
     ct = 0
 
     for s in l:
-        if isTriangular(stringToInt(s)):
+        if isTriangular(stringToInt(s.upper())):
             ct +=1
     print ct, """ triangulars words in the file "words.txt"."""
     print "execute under", time.clock()-t1, "seconds"
