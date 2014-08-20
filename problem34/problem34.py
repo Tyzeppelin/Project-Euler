@@ -42,10 +42,10 @@ if __name__ == "__main__":
     # for e in range -> split -> factorial -> bam
 
     # I iterate only until 100000.
-    for e in range (100000):
+    for e in range (1000000)[3:]:
         num = [int(i) for i in str(e)]
         if cond(num):
-            print 'yata -> ', e
+            #print 'yata -> ', e
             res += e
 
 print res
