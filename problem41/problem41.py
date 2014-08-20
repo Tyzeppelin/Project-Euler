@@ -58,8 +58,6 @@ if __name__ == "__main__":
     bumblebee = OPTIMUS[0]
     sentinel = 0
 
-    print "wadifuck"
-
     # I started with 7654321 cause all the 1-8 and 1-9 pandigital
     # are multiple of 9 (their sums equals a multiple of 9)
     i = 7654321

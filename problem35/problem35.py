@@ -60,5 +60,5 @@ if __name__ == "__main__" :
             if circularTest(e):
                 ct += 1
                 tab.append(e)
-    print ct, tab
+    print ct, "circular Primes"
     print "Prime generation + computation under", time.clock()-time1, "seconds"

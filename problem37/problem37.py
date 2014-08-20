@@ -63,5 +63,5 @@ if __name__ == "__main__" :
                 tab.append(num)
         num += 1
 
-    print ct, tab, sum(tab)
+    print "The sum mof all 11 truncatable prime are :", sum(tab)
     print "Prime generation + computation under", time.clock()-time1, "seconds"
