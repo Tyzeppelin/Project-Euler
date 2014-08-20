@@ -14,96 +14,22 @@ import time
 # a7a8a9 div 13
 # a8a9a10 div 17
 
-
-#
-# d1 = ?
-# d2 = ?
-# d3 = -2d7 + k
-# d4 = 0, 2, 4, 6, 8
-# d5 = 2d7 + k
-# d6 = 0, 5
-# d7 = 0...9
-# d8 = d7 + k
-# d9 = 1/2d7 + k
-# d10 = 9/20d7 + k
-#
-#
-
-def isPandigital(n):
-    arr = n
+def isPandig(n):
+    arr = toArr(n)
     arr.sort()
-    return arr == range(10)
+    base = range[10]
+    return arr == base
 
-def get_d1():
-    return 0
-
-def get_d2():
-    return 0
-
-def get_d3(d4, d5):
-    d3 = -0.1
-    i = 1
-    k = 0
-    while d3%1 != 0.0 or d3 < 0:
-        d3 = 3*k - d4 - d5
-        if d3 > 9:
-            i = -1
-            k = 0
-        k += i
-        print "d3", d3, d4, d5, k, i
-    return int(d3)
-
-def get_d4():
-    return [0, 2, 4, 6, 8]
-
-def get_d5(d6, d7):
-    d5 = -0.1
-    i = 1
-    k = 0
-    while d5%1 != 0.0 or d5 < 0:
-        d5 = (2*d7-d6+7*k)/10.0
-        print "d5", d5, d6, d7, k, i
-        k += i
-    return int(d5)
-
-def get_d6():
-    return [0, 5]
-
-def get_d8(d6, d7):
-    d8 = -0.1
-    i = -1
-    if d7-d6 < 11:
-        i = 1
-    k = 0
-    while d8%1 != 0.0 or d8 < 0:
-        d8 = d7-d6+11.0*k
-        print "d8", d8, d6, d7, k, i
-        k += i
-    return int(d8)
-
-def get_d9(d7, d8):
-    d9 = -0.1
-    i = 1
-    k = 0
-    while d9%1 != 0.0 or d9 < 0:
-        d9 = (13*k-10*d7-d8)/4.0
-        print "d9", d9, d7, d8, k, i
-        k += i
-    return int(d9)
-
-def get_d10(d8, d9):
-    d10 = -0.1
-    i = -1
-    if (10*d8+d9) < 17:
-        i = 1
-    k = 0
-    while d10%1 != 0.0 or d10 < 0 or d10 > 10:
-        d10 = (-17*k+10*d8+d9)/5.0
-        print "d10", d10, d8, d9, k, i
-        if d10 > 10:
-            i = -1
-        k += i
-    return int(d10)
+def mbPandig(n):
+    arr = toArr(n)
+    arr.sort()
+    base = range(10)
+    try :
+        for v in arr:
+            base.remove(v)
+    except ValueError :
+        return False
+    return len(base) == 2
 
 def getRemains(arr):
     ref = range(10)
@@ -117,42 +43,58 @@ def toInt(arr):
         res = ((10**int(math.log10(e)+1))*res) + e
     return res
 
+def toArr(n):
+    res = []
+    a = n
+    while a >= 1:
+        res.append(a%10)
+        a = a/10
+    if int(math.log10(n)+1) == 7:
+        res.append(0)
+    return res[::-1]
+
+def cond(n):
+    arr = toArr(n)
+    #print arr
+    if (arr[1]) % 2 != 0:
+        #print "!%2"
+        return False
+    if (arr[0]+arr[1]+arr[2]) % 3 != 0:
+        #print "!%3"
+        return False
+    if (arr[3]) % 5 != 0:
+        #print "!%5"
+        return False
+    if (10*arr[2]+arr[3]-2*arr[4]) % 7 != 0:
+        #print "!%7"
+        return False
+    if abs(arr[3]-arr[4]+arr[5]) % 11 != 0:
+        #print "!%11"
+        return False
+    if (10*arr[4]+arr[5]+4*arr[6]) % 13 != 0:
+        #print "!%13"
+        return False
+    if (10*arr[5]+arr[6]-5*arr[7]) % 17 != 0:
+        #print "!%17"
+        return False
+    return True
+
 if __name__ == "__main__":
 
     t1 = time.clock()
 
     arr = []
 
-    arr_d4 = [0, 2, 4, 6, 8]
-    arr_d6 = [0, 5]
+    #print cond(6357289)
 
+    #time.sleep(10)
 
-    for d7 in range(3):
-        for d4 in arr_d4:
-            for d6 in arr_d6:
-                d5 = get_d5(d6, d7)
-                d3 = get_d3(d4, d5)
-                d8 = get_d8(d6, d7)
-                d9 = get_d9(d7, d8)
-                d10 = get_d10(d8, d9)
-                num = [d3, d4, d5, d6, d7, d8, d9, d10]
-                try :
-                    r = getRemains(num)
-                    num = r+num
-                    print num
-                    if isPandigital(num):
-                        print "pandig", num
-                        arr.append(toInt(num))
-                    r.reverse()
-                    num = r+num
-                    print num
-                    if (isPandigital(num)):
-                        print "pandig", num
-                        arr.append(toInt(num))
-                except IndexError:
-                    print "not a pandig", num
-        print arr
-    print(arr)
+    i = 1324567
 
+    while i <= 98765432 :
+        if mbPandig(i):
+            if cond(i):
+                print i
+        i += 1
 
-    print isPandigital(123456789)
+    # way too long -> 16695334890
