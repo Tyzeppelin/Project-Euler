@@ -43,7 +43,7 @@ def maxProduct (tab) :
 
 if __name__ == "__main__" :
 
-	PATH = "problem11_data"
+	PATH = "problem11_data.txt"
 
 	data = to_list(PATH)
 

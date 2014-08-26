@@ -1,15 +1,15 @@
 # /usr/bin/python
 
 
-# transform a file into an array of the first 
+# transform a file into an array of the first
 # n digits of each line
 def nToList (PATH, n) :
-	
+
 	data_f = open(PATH, 'r')
 	data_l = data_f.readlines()
 
 	result = []
-	
+
 	for t in data_l :
 		result.append(int(t)/10**(50-n))
 
@@ -18,7 +18,7 @@ def nToList (PATH, n) :
 # sum the first n digits of each lines of a file
 # named PATH
 def sumNNumber (PATH , n) :
-	
+
 	result = 0
 	i = 5
 	while len(str(result)) < n+5 :
@@ -32,7 +32,7 @@ def sumNNumber (PATH , n) :
 
 if __name__ == "__main__" :
 
-	PATH = "problem13_data"
+	PATH = "problem13_data.txt"
 	# I chose to take the first 10 numbers of
 	# each lines to make sure that i take the first
 	# 10 numbers of the sum of each lines
