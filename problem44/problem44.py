@@ -2,6 +2,9 @@
 import math
 import time
 
+class Found(Exception): pass
+
+
 def isPentagonal(n):
     return (1/6.0 * (1 + math.sqrt(24*n + 1)))%1 == 0.0
 
@@ -20,14 +23,13 @@ if __name__ == "__main__":
 
     base = Pentagonal(10000)
     dmin = 10**10
-
-    for pj in base:
-        for pk in base[base.index(pj)+1:]:
-            #print pk, pj, pk+pj, pk-pj
-            if isPentagonal(pj+pk) and isPentagonal(abs(pk-pj)):
-                print "couple -> ", pk, pj, "diff ->", pk-pj
-                dmin = min(dmin,abs(pk-pj))
-
-    print dmin
-
-    print "Done under", time.clock()-t1, "seconds."
+    try:
+        for pj in base:
+            for pk in base[base.index(pj)+1:]:
+                #print pk, pj, pk+pj, pk-pj
+                if isPentagonal(pj+pk) and isPentagonal(abs(pk-pj)):
+                    dmin = min(dmin,abs(pk-pj))
+                    raise Found
+    except (Found):
+        print dmin
+        print "Done under", time.clock()-t1, "seconds."
