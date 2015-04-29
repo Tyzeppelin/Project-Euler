@@ -28,6 +28,25 @@ def matrixOfLeadership(n):
             OPTIMUS.append(i)
         i += 1
 
+# We suppose that Ironhide is the envoy of Optimusi
+# Return the prime factors of a integer
+def ironhide(n):
+    res = []
+    m = n
+    while m > 1:
+        i = 0
+        e = OPTIMUS[i]
+        if m%e == 0:
+            res.append(e)
+            m /= e
+        else:
+            i+=1
+    return res
+
+# True if they have a common prime factor
+def sameFactors(n1, n2, n3, n4):
+    return True
+
 if __name__ == "__main__":
 
     t1 = time.clock()
@@ -35,21 +54,21 @@ if __name__ == "__main__":
     print "prime ->", OPTIMUS[-1],"->", time.clock()-t1, "seconds"
 
     t2 = time.clock()
-    n = 9
-    while n < 1000000:
-        conj = False
-        for e in OPTIMUS:
-            if OPTIMUS.count(n) == 1:
-                conj = True
-                break
-            rem = n - e
-            if rem <= 0:
-                break
-            elif math.sqrt(rem/2.0)%1 == 0.0:
-                conj = True
-                break
-        if not conj:
-            break
-        n += 2
 
-print n, "isn't satisfying goldbach, you bastard.", time.clock() - t2, "seconds"
+    n1 = 1
+    n2 = 2
+    n3 = 3
+    n4 = 4
+
+    consec = False
+    while not consec:
+
+        n1 = n2
+        n2 = n3
+        n3 = n4
+        n4 += 1
+
+        if sameFactors :
+            continue
+
+    print n1, n2, n3, n4, " in ", time.clock() - t2, "seconds"
