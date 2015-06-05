@@ -28,47 +28,64 @@ def matrixOfLeadership(n):
             OPTIMUS.append(i)
         i += 1
 
-# We suppose that Ironhide is the envoy of Optimusi
+# We suppose that Ironhide is the envoy of Optimus
 # Return the prime factors of a integer
 def ironhide(n):
     res = []
     m = n
+    i = 0
     while m > 1:
-        i = 0
         e = OPTIMUS[i]
         if m%e == 0:
             res.append(e)
             m /= e
         else:
             i+=1
-    return res
+    #print n, len(group(res)), "\t", group(res)
+    return group(res)
 
-# True if they have a common prime factor
-def sameFactors(n1, n2, n3, n4):
-    return True
+def group(arr):
+    res = {}
+    for e in arr:
+        if e in res:
+            res[e] += 1
+        else:
+            res[e] = 1
+    return [k ** v for k,v in res.items()]
+
 
 if __name__ == "__main__":
 
     t1 = time.clock()
-    matrixOfLeadership(10000000000)
+    matrixOfLeadership(30000000000)
     print "prime ->", OPTIMUS[-1],"->", time.clock()-t1, "seconds"
 
     t2 = time.clock()
 
-    n1 = 1
-    n2 = 2
-    n3 = 3
-    n4 = 4
+    n1 = 11
+    n2 = 12
+    n3 = 13
+    n4 = 14
 
-    consec = False
-    while not consec:
+    k = 1
 
-        n1 = n2
-        n2 = n3
-        n3 = n4
-        n4 += 1
+    three = False
+    while not three:
 
-        if sameFactors :
-            continue
+        n1 += k
+        n2 += k
+        n3 += k
+        n4 += k
+
+        if len(ironhide(n4)) < 4:
+            k = 4
+        elif len(ironhide(n3)) < 4:
+            k = 3
+        elif len(ironhide(n2)) < 4:
+            k = 2
+        elif len(ironhide(n1)) < 4:
+            k = 1
+        else :
+            three = True
 
     print n1, n2, n3, n4, " in ", time.clock() - t2, "seconds"
