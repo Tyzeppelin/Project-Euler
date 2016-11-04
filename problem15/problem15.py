@@ -23,14 +23,14 @@ def pascalTriangle (n) :
 def Lattice (n) :
 	a = pascalTriangle(2*n)
 	#print a
-	return a[(len(a)-1)/2]
+	return a[(len(a)-1)//2]
 
 if __name__ == "__main__" :
 	
-	n = 20
+	n = int(input())
 	#print pascalTriangle(2*n)
 	
-	print "Le nombre de chemin de Lattice pour un damier",n ,"x", n, "est de", Lattice(n) 
+	print("Le nombre de chemin de Lattice pour un damier",n ,"x", n, "est de", Lattice(n))
 	
 
 

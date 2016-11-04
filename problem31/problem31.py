@@ -1,5 +1,15 @@
 import time
 
+from collections import defaultdict
+
+def dynamic(f):
+    cache = defaultdict(lambda:-1)
+    def is_known(*args):
+        if cache[args] == -1:
+            cache[args] = f(*args)
+        return cache[args]
+    return is_known
+
 def nextCurrency(c):
     curr_ptr = currency.index(c)
     if curr_ptr == 0 :
@@ -7,6 +17,7 @@ def nextCurrency(c):
     else :
         return currency[curr_ptr-1]
 
+@dynamic
 def part(n, k):
     if n == 0 and k == 0:
         return 1
