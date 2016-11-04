@@ -22,5 +22,5 @@ if __name__ == "__main__":
 
     currency = [1, 2, 5, 10, 20, 50, 100, 200]
     a = part(200, currency[-1])
-    print a
-    print "Completed in", time.clock()-t1, "seconds"
+    print(a)
+    print("Completed in", time.clock()-t1, "seconds")
