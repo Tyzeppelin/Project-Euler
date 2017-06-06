@@ -1,110 +1,86 @@
 #!/usr/bin/python
 
-from math import *
+from math import ceil, log10, sqrt
 from collections import defaultdict
+
+import itertools
+import random
 import time
+ 
 
-
-def bumblebee(n):
-    prime = True
-    OPTIMUS = [2, 3]
-    i = OPTIMUS[-1]
-    while OPTIMUS[-1] < n:
-        prime = True
-        for p in OPTIMUS:
-            if i % p == 0:
-                prime = False
-                break
-        if prime:
-            OPTIMUS.append(i)
-        i += 2
-    #return [[int(x) for x in str(m)] for m in OPTIMUS]
-    return [p for p in OPTIMUS if  p > 10000]
-
-def isPrime(primes, n):
-    end = int(sqrt(n))
-    i = 0
-    while primes[i] < end:
-        if n%primes[i] == 0:
+# from rosetta code
+# http://rosettacode.org/wiki/Miller%E2%80%93Rabin_primality_test#Python
+def isPrime(n):
+    assert n >= 2
+    # special case 2
+    if n == 2:
+        return True
+    # ensure n is odd
+    if n % 2 == 0:
+        return False
+    # write n-1 as 2**s * d
+    # repeatedly try to divide n-1 by 2
+    s = 0
+    d = n-1
+    while True:
+        quotient, remainder = divmod(d, 2)
+        if remainder == 1:
+            break
+        s += 1
+        d = quotient
+    assert(2**s * d == n-1)
+ 
+    # test the base a to see whether it is a witness for the compositeness of n
+    def try_composite(a):
+        if pow(a, d, n) == 1:
             return False
-        i += 1
-    return True
+        for i in range(s):
+            if pow(a, 2**i * d, n) == n-1:
+                return False
+        return True # n is definitely composite
+ 
+    for i in range(5):
+        a = random.randrange(2, n)
+        if try_composite(a):
+            return False
+ 
+    return True # no base tested showed n as composite
 
 
-def mask(n):
-    return [1] * n
 
+def iterator():
+    i = 123
+    while True:
+        if isPrime(i):
+            yield i
+        i += 2
 
-def allMasks(m, i):
-    if i == 0:
-        return []
-    else :
-        m0 = m[:]
-        m0[i-1] = 0
-        return [m0]+allMasks(m0, i-1)+allMasks(m[:], i-1)
+tavg = []
+def hate_family(s):
+    t1 = time.clock()
+    c = 0
+    for i in range(1,10):
+        if isPrime(int(s.replace('*', str(i)))):
+            c += 1
+    tavg.append(time.clock()-t1)
+    return c == 8
 
-
-def family(n, mask, domain):
-    fam = 0
-    w = zip([int(x) for x in str(n)], mask)
-    for e in range(10):
-        maybe = [n if m == 1 else e for m, n in w]
-        if int(''.join(map(str, maybe))) in domain:
-            fam += 1
-    return fam
-
-
-def match(n, mask):
-    same = [e for e, m in zip([int(x) for x in str(n)], mask) if m == 0]
-    return all(same[0] == e for e in same)
-
-
-def unmask(n, mask):
-    return int(''.join(map(str, [e for e, m in zip([int(x) for x in str(n)], mask) if m == 1])))
+# one liner, but slower :/
+#def hate_lambda(s):
+#    return sum([isPrime(int(s.replace('*', str(i)))) for i in range(1,10)]) == 8
 
 if __name__ == "__main__":
     t1 = time.clock()
 
-    optimus = bumblebee(99990)
-    print len(optimus), "primes from", optimus[0], "to", optimus[-1], "generated under", time.clock()-t1, "seconds"
-    families = defaultdict(lambda: 0)
-    currMasks = [am for am in allMasks(mask(5), 5) if am.count(0) == 2 or am.count(0) == 3]
-    print len(currMasks), currMasks
+    for e in iterator():
+        for x in range(10):
+            if str(x) in str(e) and hate_family(str(e).replace(str(x), '*')):
+                print e
+                break
+        else:
+            continue
+        print 'tada'
+        break
+    print(time.clock() - t1, "seconds")
 
-    print "==========="
-
-    matches = defaultdict(lambda: [])
-    i = 0
-    op = 0
-    for m in currMasks:
-        matches[i] = defaultdict(lambda: 0)
-        for p in optimus:
-            if match(p, m):
-                matches[i][unmask(p, m)] += 1
-            op += 1
-        for k, v in matches.items():
-            if v == 8:
-                print "8 ->", k, "mask ->", k
-        i += 1
-    print "==========="
-    for index in matches.keys():
-        print currMasks[index], matches[index]
-    print "==========="
-    print op, "operations"
-
-    # for p in optimus:
-    #     for mm in currMasks:
-    #         if p == 56003:
-    #             print p, mm, family(p, mm, optimus)
-    #         f = family(p, mm, optimus)
-    #         families[f] += 1
-    #         if f == 8:
-    #             print p, mm
-    #             break
-    #     else:
-    #         continue
-    #     break
-
-    print families
-
-    print "executed under", time.clock() - t1, "seconds"
+    #print(sum(tavg) / len(tavg), "avg time family")
