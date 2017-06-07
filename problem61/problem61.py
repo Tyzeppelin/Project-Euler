@@ -34,5 +34,12 @@ def is_oct(n):
 
 if __name__ == "__main__":
 
-    o = [n for n in [octo(i) for i in range(50)] if ceil(log10(n)) == 4]
-    print(o)
+    o = [n for n in [octo(i) for i in range(1,200)] if ceil(log10(n)) == 4]
+    h = [n for n in [hept(i) for i in range(1,200)] if ceil(log10(n)) == 4]
+    x = [n for n in [hexa(i) for i in range(1,200)] if ceil(log10(n)) == 4]
+    p = [n for n in [pent(i) for i in range(1,200)] if ceil(log10(n)) == 4]
+    s = [n for n in [squa(i) for i in range(1,200)] if ceil(log10(n)) == 4]
+    t = [n for n in [tria(i) for i in range(1,200)] if ceil(log10(n)) == 4]
+    print(o, h, x, p, s, t)
+
+    
