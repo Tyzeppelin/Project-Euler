@@ -89,7 +89,7 @@ if __name__ == "__main__":
                 #print(int(str(e)+str(p)),int(str(p)+str(e)),"----> graph["+str(e)+"]->",graph[e], "graph["+str(p)+"]->", graph[p])
                 graph[e].add(p)
                 graph[p].add(e)
-        if c % 10 == 0:
+        if c % 20 == 0:
             #print(e)
             isok, scc = get_5_conn(graph)
             if isok:
