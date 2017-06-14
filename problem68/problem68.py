@@ -11,12 +11,15 @@ from operator import itemgetter
 # 
 #
 # /
-# | x_1 + x_6 = x_3 + x_7
-# | x_2 + x_7 = x_4 + x_8
-# | x_3 + x_8 = x_5 + x_9
-# | x_4 + x_9 = x_1 + x_10
-# | x_5 + x_10 = x_2 + x_6
+# | x_1 + x_6 = x_4 + x_5
+# | x_2 + x_7 = x_0 + x_6
+# | x_3 + x_8 = x_1 + x_7
+# | x_4 + x_9 = x_2 + x_8
+# | x_0 + x_5 = x_3 + x_9
 # \
+#
+#Plus -> triplets have to be presented clockwise
+#     -> summary str has to be 16 char long
 def get_sol_10():
     ref = list(range(1, 11))
 
