@@ -67,20 +67,27 @@ def prime_iterator(n):
             yield i
         i+=2
 
-@dynamic
-def totient(n):
-    if isPrime(n):
-        return n-1
-    if n%2 == 0:
-        return 2*totient(n/2) if (n/2 % 2) != 1 else totient(n/2)
-    for p in prime_iterator(n/2+1):
-        if n % p == 0:
-            g = gcd(p, n/p)
-            if g == 1:
-                return totient(p)*totient(n/p)
-            else:
-                return totient(p)*totient(n/p)*g/totient(g)
+#@dynamic
+#def totient(n):
+#    if isPrime(n):
+#        return n-1
+#    if n%2 == 0:
+#        return 2*totient(n/2) if (n/2 % 2) != 1 else totient(n/2)
+#    for p in prime_iterator(n/2+1):
+#        if n % p == 0:
+#            g = gcd(p, n/p)
+#            if g == 1:
+#                return totient(p)*totient(n/p)
+#            else:
+#                return totient(p)*totient(n/p)*g/totient(g)
 
+def totient_sieve(n):
+
+    r = range(n)
+    for n in range(2, n):
+        if r[n] == n:
+            r[n::n] = (i * (n-1)/n for i in r[n::n])
+    return r
 
 def is_perm(n, m):
     nl = list(n)
@@ -96,20 +103,17 @@ if __name__ == "__main__":
     t1 = time.clock()
 
     m = 2
-    #print(totient(87109))
-    #for n in range(2,100000):
-    #    t = totient(n)
-    #for n in range(5000000, 10000001):
-    for n in range(2, 10000001):
-        t = totient(n)
+    sieve = totient_sieve(10000000)
+    for n in range(2, 10000000):
+        t = sieve[n]
+        st = str(t)
         sn = str(n)
-        st = str(t) 
         if len(sn) == len(st) and set(sn) == set(st):
                 #if sorted(st) == sorted(sn):
                 if is_perm(sn, st):
                     #print(n, t, float(n)/t)
-                    if float(n)/t < float(m)/totient(m):
+                    if float(n)/t < float(m)/sieve[m]:
                         m = n
 
-    print(m, totient(m), m/totient(m))
+    print(m, sieve[m], m/sieve[m])
     print(time.clock() - t1, "seconds")
