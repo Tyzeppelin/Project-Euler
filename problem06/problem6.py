@@ -1,17 +1,9 @@
-#!/usr/bin/python
 
-# Designed by a unicorn
+import time
 
-sumOfSquare =  0
-squareOfSum = 0
+if __name__ == "__main__":
 
+    t1 = time.clock()
 
-for i in range(101) :
-	squareOfSum += i
-squareOfSum = pow(squareOfSum, 2)
-
-for i in range(101) :
-	sumOfSquare += (pow(i, 2))
-
-result = squareOfSum - sumOfSquare
-print(result)
+    print(sum([x for x in range(101)])**2 - sum([x**2 for x in range(101)]))
+    print(time.clock() - t1, "seconds")
