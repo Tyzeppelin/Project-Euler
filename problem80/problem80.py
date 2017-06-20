@@ -12,6 +12,7 @@ def non_squared_generator(n):
 
 if __name__ == "__main__":
 
+    # just to be sure
     decimal.getcontext().prec = 102
 
     t1 = time.clock()
