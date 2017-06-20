@@ -1,5 +1,5 @@
-#!/usr/bin/env/python
 
+import time
 
 # Formalism 
 # 
@@ -31,104 +31,99 @@ Y1905 = [7, 3, 3, 6, 1, 4, 6, 2, 5, 7, 3, 5]
 
 def HappyNewYear (year) :
 
-	nextYear = []
+    nextYear = []
 	
-	for e in year :
-		if e+1 == 7 :
-			nextYear.append(e+1)
-		else :
-			nextYear.append((e+1)%7)
-	return nextYear
+    for e in year :
+        if e+1 == 7 :
+	    nextYear.append(e+1)
+	else :
+	    nextYear.append((e+1)%7)
+    return nextYear
 
 
 
 def HappyNewLeapYear (year) :
 	
-	nextYear = []
-	i = 0
-	while i < 2 :
-		e = year[i]
-		if e+1 == 7 :
-			nextYear.append(e+1)
-		else :
-			nextYear.append((e+1)%7)
-		i+=1
-	while i < len(year) :
-		e = year[i]
-		if e+2 == 7 :
-			nextYear.append(e+2)
-		else :
-			nextYear.append((e+2)%7)
-		i+=1
-	return nextYear
+    nextYear = []
+    i = 0
+    while i < 2 :
+        e = year[i]
+	if e+1 == 7 :
+	    nextYear.append(e+1)
+	else :
+	    nextYear.append((e+1)%7)
+	i+=1
+    while i < len(year) :
+        e = year[i]
+	if e+2 == 7 :
+	    nextYear.append(e+2)
+	else :
+	    nextYear.append((e+2)%7)
+	i+=1
+    return nextYear
 
 def HappyNewYearNextLeap (year) :
 	
-	nextYear = []
-	i = 0
-	while i < 2 :
-		e = year[i]
-		if e+2 == 7 :
-			nextYear.append(e+2)
-		else :
-			nextYear.append((e+2)%7)
-		i+=1
-	while i < len(year) :
-		e = year[i]
-		if e+1 == 7 :
-			nextYear.append(e+1)
-		else :
-			nextYear.append((e+1)%7)
-		i+=1
-	return nextYear
-	
-
-		
+    nextYear = []
+    i = 0
+    while i < 2 :
+        e = year[i]
+	if e+2 == 7 :
+	    nextYear.append(e+2)
+	else :
+	    nextYear.append((e+2)%7)
+	i+=1
+    while i < len(year) :
+        e = year[i]
+	if e+1 == 7 :
+	    nextYear.append(e+1)
+	else :
+	    nextYear.append((e+1)%7)
+	i+=1
+    return nextYear
+			
 
 def howMuch (day, toY) :
-	"""
-	day as an int from 1 to 7
-	toY as an int from 1901 to n
-	"""
+    """
+    day as an int from 1 to 7
+    toY as an int from 1901 to n
+    """
 
-	res = 0 
-	year = Y1901
+    res = 0 
+    year = Y1901
 
-	i = 1902
+    i = 1902
 	
 
-	nextLeap = False
-
-	print i-1, year, nextLeap, res
-
-	while i <= toY :
-		
-		res += year.count(day)
-		if (i%4 == 0 and i%100 !=0)or i%400  == 0 :
-			year = HappyNewLeapYear(year)	
-			nextLeap = True
-		elif nextLeap :
-			year = HappyNewYearNextLeap(year)
-			nextLeap = False
-		else :
-			year = HappyNewYear(year)
-		print i, year, nextLeap, res
-		i+=1
-	
-	return res + year.count(day)
+    nextLeap = False
+    while i <= toY :
+        res += year.count(day)
+	if (i%4 == 0 and i%100 !=0)or i%400  == 0 :
+	    year = HappyNewLeapYear(year)	
+	    nextLeap = True
+	elif nextLeap :
+	    year = HappyNewYearNextLeap(year)
+	    nextLeap = False
+	else :
+	    year = HappyNewYear(year)
+	i+=1
+    return res + year.count(day)
 	
 
 
 if __name__ == "__main__" :
-	
-	#Y1 = HappyNewYear(Y1901)
-	#Y2 = HappyNewLeapYear(Y1903)
-	#Y3 = HappyNewYearNextLeap(Y1904)
 
-	#print Y1901, "\n", Y1, "\n", Y1902, Y1902 == Y1,"\n--------"
-	#print Y1903, "\n", Y2, "\n", Y1904, Y1904 == Y2,"\n--------"
-	#print Y1904, "\n", Y3, "\n", Y1905, Y1905 == Y3,"\n--------"
+    t1 = time.clock()
 
-	a = howMuch(7, 2000)
-	print a
+    #Y1 = HappyNewYear(Y1901)
+    #Y2 = HappyNewLeapYear(Y1903)
+    #Y3 = HappyNewYearNextLeap(Y1904)
+
+    #print Y1901, "\n", Y1, "\n", Y1902, Y1902 == Y1,"\n--------"
+    #print Y1903, "\n", Y2, "\n", Y1904, Y1904 == Y2,"\n--------"
+    #print Y1904, "\n", Y3, "\n", Y1905, Y1905 == Y3,"\n--------"
+
+    a = howMuch(7, 2000)
+    print(a)
+    print(time.clock() - t1, "seconds")
 

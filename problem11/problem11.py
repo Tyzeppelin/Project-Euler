@@ -1,8 +1,7 @@
-#!/usr/bin/python
 
+import time
 from functions import *
 
-# We suppose that people know what a path is ><"
 def to_list (PATH) :
     a = []
 
@@ -43,9 +42,12 @@ def maxProduct (tab) :
 
 if __name__ == "__main__" :
 
-	PATH = "problem11_data.txt"
+    t1 = time.clock()       
 
-	data = to_list(PATH)
+    PATH = "problem11_data.txt"
 
-	final = maxProduct(data)
-	print final
+    data = to_list(PATH)
+
+    final = maxProduct(data)
+    print(final)
+    print(time.clock() - t1, "seconds")

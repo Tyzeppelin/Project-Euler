@@ -1,15 +1,9 @@
-#!/usr/bin/env
 
-
-
-import timeit
+import time
 
 def pascalTriangle (n) :
-	
 	a = [1, 1]
-
 	i = 1
-
 	while i < n :
 		b = [1]
 		#print a
@@ -26,11 +20,10 @@ def Lattice (n) :
 	return a[(len(a)-1)//2]
 
 if __name__ == "__main__" :
-	
-	n = int(input())
-	#print pascalTriangle(2*n)
-	
-	print("Le nombre de chemin de Lattice pour un damier",n ,"x", n, "est de", Lattice(n))
-	
 
+    t1 = time.clock()
 
+    n = int(input())
+    print(n, Lattice(n))
+    
+    print(time.clock() - t1, "seconds")
