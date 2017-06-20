@@ -1,3 +1,6 @@
+#ViM swp files
+*.swp
+
 # Compiled files
 *.pyc
 
