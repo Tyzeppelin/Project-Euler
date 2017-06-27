@@ -67,6 +67,6 @@ if __name__ == "__main__":
 
     res = autobotsinrange(amin, amax, bmin, bmax)
 
-    print "The biggest couple (a,b) that gives the most number of consecutive prime from the formula n^2 + a*b + b, for n in N is :(%d,%d)." % res
+    print("The biggest couple (a,b) that gives the most number of consecutive prime from the formula n^2 + a*b + b, for n in N is :(%d,%d)." % res)
 
-    print "Completed in", time.clock()-t1, "seconds"
+    print("Completed in", time.clock()-t1, "seconds")

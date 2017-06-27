@@ -64,8 +64,8 @@ if __name__ == "__main__":
             cycle = rec
         den += 1
 
-    print "maximum recurring cycle -> max", max, " ; cycle", cycle
+    print("maximum recurring cycle -> max", max, " ; cycle", cycle)
 
 
 
-    print "Execute in", time.clock()-t1, "seconds"
+    print("Execute in", time.clock()-t1, "seconds")

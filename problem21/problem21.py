@@ -1,4 +1,3 @@
-#!/usr/bin/env
 
 from math import *
 
@@ -49,7 +48,7 @@ def FriendlyNumbers (n) :
 
 		if isFriendly(i, sumOfDivisors(i)) and i < sumOfDivisors(n) :
 			Friendly.append((i, sumOfDivisors(i)))
-			print "<3", Friendly
+			print("<3", Friendly)
 		#print i, Friendly, NUMBERS, DIVISORS
 		i+=1
 	return Friendly 
@@ -69,7 +68,7 @@ if __name__ == "__main__" :
 	n = 10000
 	res = FriendlyNumbers(n)
 	
-	print res
-	print sumOfFriends(res)
+	print(res)
+	print(sumOfFriends(res))
 
 

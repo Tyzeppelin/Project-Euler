@@ -33,6 +33,6 @@ if __name__ == "__main__":
 #   print magus(9999999)
 #   -> [4150, 4151, 54748, 92727, 93084, 194979]
 
-    print "The sum of all the numbers that can be written as the sum of fifth powers of their digits is:", sum(magus(9999999))
+    print("The sum of all the numbers that can be written as the sum of fifth powers of their digits is:", sum(magus(9999999)))
 
-    print "Completed in", time.clock()-t1, "seconds"
+    print("Completed in", time.clock()-t1, "seconds")

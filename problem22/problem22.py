@@ -41,7 +41,6 @@ def valueOfAList (l) :
 
 if  __name__ == "__main__" :
 
-	print "coucou"
 	a = toListSorted(PATH)
 	b = valueOfAList(a)
-	print b
+	print(b)

@@ -25,6 +25,6 @@ if __name__ == "__main__":
 #   res.sort()
 #   print res
 
-    print "The number of distincts terms int the sequence geenrated by a^b for 2 <= a <= 100 and 2 <= b <= 100 is:", len(res)
+    print("The number of distincts terms int the sequence geenrated by a^b for 2 <= a <= 100 and 2 <= b <= 100 is:", len(res))
 
-    print "Completed in", time.clock()-t1, "seconds"
+    print("Completed in", time.clock()-t1, "seconds")

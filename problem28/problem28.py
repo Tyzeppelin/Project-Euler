@@ -68,5 +68,5 @@ if __name__ == "__main__":
     n = 1001
 
 #   print sumoffour(n)
-    print "The sum of the numbers on the diagonals in a", n, " by", n, "spiral formed in the way described above is :", sumoffour(n)
-    print "Completed in", time.clock()-t1, "seconds"
+    print("The sum of the numbers on the diagonals in a", n, " by", n, "spiral formed in the way described above is :", sumoffour(n))
+    print("Completed in", time.clock()-t1, "seconds")
