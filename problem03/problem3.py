@@ -19,11 +19,13 @@ def isPrime (n) :
 if __name__ == "__main__" :
 
     t1 = time.clock()
-
-    i = int(sqrt(LARGE_NUMBER))
-    while i > 2 :
+    i = 2
+    n = int(sqrt(LARGE_NUMBER))
+    k = 0
+    while i < n :
         if (LARGE_NUMBER%i == 0) and isPrime(i) :
-            break
-        i -= 1 
-    print(i)
+            k = i
+            #break
+        i += 1 
+    print(k)
     print(time.clock() - t1, "seconds")
