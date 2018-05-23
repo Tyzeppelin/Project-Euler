@@ -1,58 +1,52 @@
 
 import numpy as np
-import collections
 import time
 
 from collections import defaultdict
+from functools import reduce
+from math import sqrt
 
-# As ye auld sayin' goes: "If it's a tree, it's easy" 
+# As ye auld sayin' goes: "If it's a tree, it's easy"
 # But this time, the problem is no tree
 
-def neigh(n):
-    if n[0] == 0:
-        yield (n[0]+1, n[1])
-    elif n[0] == 79:
-        if n[1] == 0:
-            yield (79,1)
-        elif n[1] == 79:
-            yield (79,78)
-        else:
-            yield (79, n[1]-1)
-            yield (79, n[1]+1)
-    elif n[1] == 0:
-        yield (n[0],n[1]+1)
-        yield (n[0]+1,n[1])
-    elif n[1] == 79: 
-        yield (n[0]+1, n[1])
-        yield (n[0], n[1]-1)
+def neigh(p, sz_mat):
+    if p == 0:
+        return [sz_mat*i+1 for i in range(sz_mat)]
+    if p == sz_mat**2+1:
+        return []
+    if p in [sz_mat*i for i in range(sz_mat+1)[1:]]:
+        return [sz_mat**2+1]
+    if p in range(sz_mat):
+        return [p+1, p+sz_mat]
+    if p in range(sz_mat**2)[-sz_mat+1:]:
+        return [p+1, p-sz_mat]
     else:
-        yield (n[0]+1, n[1])
-        yield (n[0], n[1]+1)
-        yield (n[0], n[1]-1)
+        return [p+1, p+sz_mat, p-sz_mat]
 
-def dijkstra(src, mat):
+def dijkstra(src, coef):
 
-    Q = []
+    #print(coef, coef.size)
+
+    sz_mat = int(sqrt(coef.size-1))
+
+    Q = list(range(coef.size))
     dist = defaultdict(lambda: float('inf'))
     prev = defaultdict(lambda: None)
-    
-    for i in range(80):
-        for j in range(80):
-            Q.append((i,j))
-                
-    dist[src] = mat[src[0]][src[1]]
+
+    dist[src] = 0
 
     while len(Q) != 0:
         u = reduce(lambda m, x: m if dist[m] < dist[x] else x, Q)
         Q.remove(u)
 
-        for v in neigh(u):
-            alt = dist[u] + mat[v[0]][v[1]]
+        for v in neigh(u, sz_mat):
+            #print("## ", u, v)
+            alt = dist[u] + coef[v]
             if alt < dist[v]:
                 dist[v] = alt
                 prev[v] = u
     return dist, prev
-            
+
 
 
 if __name__ == '__main__':
@@ -60,13 +54,14 @@ if __name__ == '__main__':
     t1 = time.clock()
 
     with open("matrix.txt", 'r') as f:
-        matrix = [[int(v) for v in l.rstrip().split(',')] for l in f.readlines()]
+        matrix = np.asarray([[int(v) for v in l.rstrip().split(',')] for l in f.readlines()])
+        coef = np.concatenate(([0], matrix.flatten(), [0]))
 
-    print(np.asarray(matrix))
-    print(np.min(matrix), np.max(matrix))
-    #res_d, res_p = dijkstra((0,0), matrix)
-    
-    #print({k:v for k,v in res_d.iteritems() if k[0] == 79})
-    #print(min([v for k,v in res_d.iteritems() if k[0] == 79]))
+    #print(matrix)
+    #print(coef)
+    #print(np.min(matrix), np.max(matrix))
+    res_d, res_p = dijkstra(0, coef)
+    print(res_d[coef.size-1])
+    #print(res_p)
 
     print(time.clock() - t1, "seconds")
