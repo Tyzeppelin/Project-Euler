@@ -7,7 +7,7 @@ if __name__ == "__main__" :
 
     t1 = time.clock()
 
-    digits = range(10)
+    digits = list(range(10))
 
     target = 1000002.0
 
