@@ -39,11 +39,11 @@
 
 (defvar *vert* (make-array '(20 20) :initial-element 1))
 (defvar *hori* (make-array '(20 20) :initial-element 1))
-(defvar *dia1* (make-array '(20 20) :initial-element 1)) 
-(defvar *dia2* (make-array '(20 20) :initial-element 1)) 
+(defvar *dia1* (make-array '(20 20) :initial-element 1))
+(defvar *dia2* (make-array '(20 20) :initial-element 1))
 
 (defun update-hv (mat i j value)
-  (when i 
+  (when i
   (labels (
     (update-y (j)
       (when j
@@ -55,7 +55,7 @@
 ))
 
 (defun update-di (mat i j value)
-  (when (and i j) 
+  (when (and i j)
     (let ((old (aref mat (car i) (car j))))
       (setf (aref mat (car i) (car j)) (* old value)) (update-di mat (cdr i) (cdr j) value))
 ))
@@ -63,9 +63,9 @@
 (defun parse-mat (mat &optional (i 0) (j 0))
   (when (not (= i 20))
     (if (= j 20) (parse-mat mat (1+ i) 0)
-    (let* 
+    (let*
       ((value (aref mat i j)))
-      (update-hv *vert* (range (max 0 (- i 3)) i) (list j) value) 
+      (update-hv *vert* (range (max 0 (- i 3)) i) (list j) value)
       (update-hv *hori* (list i) (range (max 0 (- j 3)) j) value)
       (update-di *dia1* (range (max 0 (- i 3)) i) (range (max 0 (- j 3)) j) value)
       (update-di *dia2* (range (max 0 (- i 3)) i) (range j (min 19 (+ j 3))) value)
@@ -73,14 +73,14 @@
 ))))
 
 (defun max-arr (arr i j &optional (m 0))
-  (cond 
+  (cond
     ((= j 0) (max-arr arr (- i 1) 19 m))
     ((= i 0) m)
     (t (max-arr arr i (- j 1) (max m (aref arr i j))))
 ))
 
 
-(defun main () 
+(defun main ()
   *mat*
   (terpri)
   (range 0 10)
@@ -90,7 +90,7 @@
   ;(write *vert*)
   ;(write *hori*)
   (terpri)
-  ;(let 
+  ;(let
   ;  ((v (max-arr *vert* 19 19))
   ;  (h (max-arr *hori* 19 19))
   ;  (d1 (max-arr *dia1* 19 19))
@@ -100,7 +100,7 @@
   ;)
   ;(write (max-arr *vert* 19 19))
   ;(terpri)
-  ;(write (max-arr *hori* 19 19))  
+  ;(write (max-arr *hori* 19 19))
   ;(terpri)
   ;(write (max-arr *dia1* 19 19))
   ;(terpri)

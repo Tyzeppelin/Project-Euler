@@ -1,25 +1,25 @@
 
-(defun first-div (n d) 
-  (if (= (mod n d) 0) d 
+(defun first-div (n d)
+  (if (= (mod n d) 0) d
     (first-div n (+ d 1))
 ))
 
 (defun prime-div (n last-div)
-  (if (< n last-div) nil 
+  (if (< n last-div) nil
     (let ((res (first-div n last-div)))
       (cons res (prime-div (/ n res) res))
 )))
 
 ; todo utiliser des booleens
 (defun not-in-list (in fac)
-  (labels 
+  (labels
     ((is-in (x l)
-      (if l 
-        (if (= (car l) x) nil 
+      (if l
+        (if (= (car l) x) nil
           (is-in x (cdr l)))
         x
   )))
-    (if in 
+    (if in
       (let ((n (is-in (car in) fac)))
         (if n (cons n (not-in-list (cdr in) fac))
           (cons nil (not-in-list (cdr in) (remove (car fac) fac :count 1)))))
