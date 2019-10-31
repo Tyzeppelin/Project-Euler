@@ -66,18 +66,13 @@ def dijkstra(src, coef):
 
 if __name__ == '__main__':
 
-    t1 = time.clock()
+    t1 = time.process_time()
 
     with open("matrix.txt", 'r') as f:
         matrix = np.asarray([[int(v) for v in l.rstrip().split(',')] for l in f.readlines()])
         coef = matrix.flatten()
 
-    #print(matrix)
-    #print(coef)
-    #print(np.min(matrix), np.max(matrix))
     res_d, res_p = dijkstra(0, coef)
-    #don't forget to add the first coef.
     print(res_d[coef.size-1]+coef[0])
-    #print(res_p)
 
-    print(time.clock() - t1, "seconds")
+    print(time.process_time() - t1, "seconds")
