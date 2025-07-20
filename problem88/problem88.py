@@ -74,7 +74,7 @@ if __name__ == "__main__":
                 break
             else:
                 n += 1
-    
+
     print("len", len(set(r)))
     print("sum", sum(set(r)))
 
