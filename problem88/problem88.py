@@ -24,8 +24,15 @@ def dynamic(f):
 def divisors(n):
     a = math.ceil(math.sqrt(n))
 
-    ret = []
+    ret = {1}
 
+    m = n
+    i_odd = 1
+    while m%2 == 0:
+        ret.add(i_odd * 2)
+        ret.add(n // i_odd * 2)
+        m = m // 2
+    
     if n%2==0:
         ret += [list([2, n//2])]
         if n//2 not in OPTIMUS:

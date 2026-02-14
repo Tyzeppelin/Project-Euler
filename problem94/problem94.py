@@ -65,4 +65,4 @@ if __name__ == "__main__":
 #    print(sorted(ref_pos))
 #    print(sorted(ref_neg))
     
-    print("done under", time.time() - t1, "sconds.")
+    print("done under", time.time() - t1, "seconds.")
